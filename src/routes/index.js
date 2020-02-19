@@ -1,18 +1,49 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
+import Route from './Route';
 
-import SignIn from '../pages/SignIn';
-import SignUp from '../pages/SignUp';
-import Dashboard from '../pages/Dashboard';
-import Profile from '../pages/Profile';
+import SignIn from '~/pages/SignIn';
+
+import Delivery from '~/pages/Delivery';
+import CreateDelivery from '~/pages/Delivery/Create';
+import UpdateDelivery from '~/pages/Delivery/Update';
+
+import Deliveryman from '~/pages/Deliveryman';
+import CreateDeliveryman from '~/pages/Deliveryman/Create';
+import UpdateDeliveryman from '~/pages/Deliveryman/Update';
+
+import Recipients from '~/pages/Recipients';
+import CreateRecipients from '~/pages/Recipients/Create';
+import UpdateRecipients from '~/pages/Recipients/Update';
+
+import Problems from '~/pages/Problems';
 
 export default function Routes() {
   return (
     <Switch>
       <Route path="/" exact component={SignIn} />
-      <Route path="/register" component={SignUp} />
-      <Route path="/dashboard" component={Dashboard} />
-      <Route path="/profile" component={Profile} />
+
+      <Route path="/delivery" component={Delivery} isPrivate />
+      <Route path="/delivery/create" component={CreateDelivery} isPrivate />
+      <Route path="/delivery/update" component={UpdateDelivery} isPrivate />
+
+      <Route path="/deliveryman" component={Deliveryman} isPrivate />
+      <Route
+        path="/deliveryman/create"
+        component={CreateDeliveryman}
+        isPrivate
+      />
+      <Route
+        path="/deliveryman/update"
+        component={UpdateDeliveryman}
+        isPrivate
+      />
+
+      <Route path="/recipients" component={Recipients} isPrivate />
+      <Route path="/recipients/create" component={CreateRecipients} isPrivate />
+      <Route path="/recipients/update" component={UpdateRecipients} isPrivate />
+
+      <Route path="/problems" component={Problems} isPrivate />
     </Switch>
   );
 }
