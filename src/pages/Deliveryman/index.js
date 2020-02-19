@@ -3,5 +3,5 @@ import React from 'react';
 // import { Container } from './styles';
 
 export default function Deliveryman() {
-  return <div />;
+  return <h1>Deliveryman</h1>;
 }
