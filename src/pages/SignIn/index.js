@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
@@ -17,14 +16,23 @@ function SignIn() {
 
   return (
     <>
-      <img src={logo} alt="Gobarber" />
+      <img src={logo} alt="Fastfeet" />
 
       <Form schema={schema} onSubmit={handleSubmit}>
-        <label>Seu e-mail</label>
-        <Input name="email" type="email" placeholder="exemplo@email.com" />
-        <label>Sua senha</label>
-        <Input name="password" type="password" placeholder="********" />
+        <Input
+          name="email"
+          label="SEU E-MAIL"
+          type="email"
+          placeholder="exemplo@email.com"
+        />
+        <Input
+          name="password"
+          label="SUA SENHA"
+          type="password"
+          placeholder="*************"
+        />
 
+        {/* <Button type="submit">{loading ? 'Carregando...' : 'Acessar'}</Button> */}
         <button type="submit">Entrar no sistema</button>
       </Form>
     </>
