@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 import { darken } from 'polished';
 
+import { colors } from '~/styles/colors';
+
 export const Wrapper = styled.div`
   height: 100%;
-  background: #816fe7;
+  background: ${colors.primary};
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,28 +14,23 @@ export const Wrapper = styled.div`
 
 export const Content = styled.div`
   width: 100%;
-  max-width: 350px;
-  padding: 30px 25px;
+  max-width: 360px;
   text-align: center;
+
   background: #fff;
   border-radius: 4px;
 
+  padding: 60px 30px;
+
   img {
     width: 100%;
+    height: 100%;
   }
 
   form {
     display: flex;
     flex-direction: column;
     margin-top: 30px;
-
-    label {
-      color: #333;
-      align-self: flex-start;
-      margin: 10px 0;
-      text-transform: uppercase;
-      font-weight: bold;
-    }
 
     input {
       border: 1px solid rgba(0, 0, 0, 0.1);
@@ -45,6 +43,14 @@ export const Content = styled.div`
       &::placeholder {
         color: rgba(0, 0, 0, 0.4);
       }
+    }
+
+    label {
+      color: #333;
+      align-self: flex-start;
+      margin: 10px 0;
+      text-transform: uppercase;
+      font-weight: bold;
     }
 
     span {
@@ -67,17 +73,6 @@ export const Content = styled.div`
 
       &:hover {
         background: ${darken(0.1, '#816fe7')};
-      }
-    }
-
-    a {
-      color: #fff;
-      margin-top: 15px;
-      font-size: 16px;
-      opacity: 0.8;
-
-      &:hover {
-        opacity: 1;
       }
     }
   }
