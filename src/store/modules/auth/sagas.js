@@ -7,7 +7,7 @@ import history from '~/services/history';
 
 export function* signIn({ payload }) {
   const { email, password } = payload;
-  const response = yield call(api.post, 'sessions', {
+  const response = yield call(api.post, 'login', {
     email,
     password,
   });
@@ -16,7 +16,7 @@ export function* signIn({ payload }) {
     console.tron.error('Usuário não é prestador');
   }
   yield put(signInSuccess(token, user));
-  history.push('/dashboard');
+  history.push('/delivery');
 }
 
 export default all([takeLatest('@auth/SIGN_IN_REQUEST', signIn)]);
