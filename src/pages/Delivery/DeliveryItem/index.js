@@ -11,14 +11,16 @@ import { statusColors, colors } from '~/styles/colors';
 
 import DeliveryModal from '../Modal';
 import Status from './DeliveryStatus';
-import { Container, MoreConainer } from './styles';
+import { Container, List, MoreConainer } from './styles';
+
+import translateStatus from '~/utils/translateStatus';
 
 export default function DeliveryItem({ data, updateDeliveries }) {
   async function handleDelete() {
     const confirm = window.confirm('Você realmente deseja excluir?');
 
     if (!confirm) {
-      toast.error('Encomenda não removida.');
+      toast.error(`A encomenda ${data.product} não foi deletada.`);
       return;
     }
 
@@ -33,13 +35,13 @@ export default function DeliveryItem({ data, updateDeliveries }) {
 
   return (
     <Container>
-      <small>#{data.id}</small>
-      <small>{data.recipient.name}</small>
-      <small>{data.product}</small>
-      <small>{data.recipient.city}</small>
-      <small>{data.recipient.state}</small>
+      <List>#{data.id}</List>
+      <List>{data.recipient.name}</List>
+      <List>{data.product}</List>
+      <List>{data.recipient.city}</List>
+      <List>{data.recipient.state}</List>
       <Status
-        text={data.status}
+        text={translateStatus(data.status)}
         color={statusColors[data.status].color}
         background={statusColors[data.status].background}
       />
