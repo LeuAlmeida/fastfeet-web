@@ -5,3 +5,7 @@ export const Wrapper = styled.div`
   background: #f5f5f5;
   overflow: auto;
 `;
+
+export const Content = styled.main`
+  margin-top: 100px;
+`;
