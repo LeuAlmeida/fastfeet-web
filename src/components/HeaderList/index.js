@@ -1,7 +1,24 @@
 import React from 'react';
 
-// import { Container } from './styles';
+import PropTypes from 'prop-types';
 
-export default function HeaderList() {
-  return <div />;
+import { Container, Content } from './styles';
+
+export default function HeaderList({ title, children }) {
+  return (
+    <Container>
+      <h1>{title}</h1>
+
+      {children && <Content>{children}</Content>}
+    </Container>
+  );
 }
+
+HeaderList.propTypes = {
+  title: PropTypes.string.isRequired,
+  children: PropTypes.arrayOf(PropTypes.element),
+};
+
+HeaderList.defaultProps = {
+  children: null,
+};
