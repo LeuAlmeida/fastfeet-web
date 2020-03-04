@@ -15,18 +15,27 @@ export const Container = styled.div`
     text-align: right;
   }
 
-  > small {
-    font-size: 16px;
-    color: #666;
-    text-align: left;
-
-    margin: auto 0;
-  }
-
   > section {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+  }
+`;
+
+export const List = styled.small`
+  font-size: 16px;
+  color: #666;
+  text-align: left;
+
+  margin: auto 0;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 75ch;
+
+  &:last-child {
+    text-align: right;
   }
 `;
 
