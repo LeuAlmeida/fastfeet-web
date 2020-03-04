@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { MdAdd } from 'react-icons/md';
 
 import IconButton from '~/components/utils/Button/IconButton';
 import HeaderList from '~/components/HeaderList';
 import SearchInput from '~/components/Form/SearchInput';
 
+import DeliveryItem from './DeliveryItem';
+import { Container, Content, Grid, Button } from './styles';
+
+import api from '~/services/api';
 import history from '~/services/history';
 
-import { Container, Content, Grid } from './styles';
-
 export default function Delivery() {
+  const [deliveries, setDeliveries] = useState([]);
+  const [page, setPage] = useState(1);
+
   function handleSearchDelivery(e) {}
 
   return (
@@ -24,7 +29,7 @@ export default function Delivery() {
           <IconButton
             Icon={MdAdd}
             title="CADASTRAR"
-            action={() => history.push('/deliveries/form')}
+            action={() => history.push('/delivery/create')}
             type="button"
           />
         </HeaderList>
