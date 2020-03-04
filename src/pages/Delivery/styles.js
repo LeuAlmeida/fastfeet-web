@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { statusColors, colors } from '~/styles/colors';
+
 import { SimpleButton } from '~/components/utils/Button';
 
 export const Container = styled.div`
@@ -50,9 +52,13 @@ export const Grid = styled.div`
 export const Button = styled(SimpleButton)`
   width: 100px;
   height: 36px;
+  background: ${colors.primary};
+  border: 0;
+  color: #fff;
 
   &:disabled {
     cursor: not-allowed;
-    background: #666;
+    background: ${statusColors.CANCELED.background};
+    color: ${statusColors.CANCELED.color};
   }
 `;
