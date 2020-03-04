@@ -5,6 +5,8 @@ import { colors } from '~/styles/colors';
 export const Container = styled.div`
   background: #fff;
   padding: 0 30px;
+  position: fixed;
+  width: 100%;
 
   border-bottom: 1px solid #ddd;
   margin-bottom: 35px;
@@ -75,9 +77,16 @@ export const Profile = styled.div`
     background: none;
     color: ${colors.danger};
     transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &:hover {
       color: ${colors.primary};
+    }
+
+    svg {
+      margin-left: 5px;
     }
   }
 `;
