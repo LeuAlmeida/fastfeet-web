@@ -5,8 +5,6 @@ import { colors } from '~/styles/colors';
 export const Container = styled.div`
   background: #fff;
   padding: 0 30px;
-  position: fixed;
-  width: 100%;
 
   border-bottom: 1px solid #ddd;
   margin-bottom: 35px;
