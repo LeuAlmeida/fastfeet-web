@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { FaSignOutAlt } from 'react-icons/fa';
 
 import { Container, Content, Navigation, Profile } from './styles';
 import { signOut } from '~/store/modules/auth/actions';
@@ -8,6 +9,13 @@ import { signOut } from '~/store/modules/auth/actions';
 import logo from '~/assets/logo.png';
 
 export default function Header() {
+  const dispatch = useDispatch();
+  const profile = useSelector(state => state.user.profile);
+
+  function handleSingOut() {
+    dispatch(signOut());
+  }
+
   return (
     <Container>
       <Content>
@@ -23,9 +31,12 @@ export default function Header() {
 
         <aside>
           <Profile>
-            <strong>Léu Almeida</strong>
+            <strong>{profile.name}</strong>
 
-            <button type="button">sair do sistema</button>
+            <button type="button" onClick={handleSingOut}>
+              Sair
+              <FaSignOutAlt size={12} />
+            </button>
           </Profile>
         </aside>
       </Content>
