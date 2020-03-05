@@ -22,9 +22,9 @@ export default function Routes() {
     <Switch>
       <Route path="/" exact component={SignIn} />
 
-      <Route path="/delivery" component={Delivery} isPrivate />
+      <Route path="/delivery" exact component={Delivery} isPrivate />
       <Route path="/delivery/create" component={DeliveryForm} isPrivate />
-      <Route path="/DeliveryForm/update/:id" component={Delivery} isPrivate />
+      <Route path="/delivery/update/:id" component={DeliveryForm} isPrivate />
 
       <Route path="/deliveryman" component={Deliveryman} isPrivate />
       <Route
