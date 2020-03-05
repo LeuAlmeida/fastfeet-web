@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MdAdd, MdChevronLeft, MdChevronRight } from 'react-icons/md';
+import { MdAdd, MdChevronLeft, MdChevronRight, MdBlock } from 'react-icons/md';
 import { parseISO, format } from 'date-fns';
 
 import IconButton from '~/components/utils/Button/IconButton';
@@ -7,7 +7,16 @@ import HeaderList from '~/components/HeaderList';
 import SearchInput from '~/components/Form/SearchInput';
 
 import DeliveryItem from './DeliveryItem';
-import { Container, Content, Grid, Button } from './styles';
+import {
+  Container,
+  Content,
+  Grid,
+  ButtonSection,
+  Button,
+  EmptyField,
+} from './styles';
+
+import { colors } from '~/styles/colors';
 
 import api from '~/services/api';
 import history from '~/services/history';
@@ -75,7 +84,7 @@ export default function Delivery() {
           />
         </HeaderList>
 
-        <Grid>
+        <Grid null={!deliveries.length > 0}>
           <section>
             <strong>ID</strong>
             <strong>Destinatário</strong>
@@ -85,30 +94,39 @@ export default function Delivery() {
             <strong>Status</strong>
             <strong>Ações</strong>
           </section>
-          {deliveries.map(delivery => (
-            <DeliveryItem
-              updateDeliveries={loadDeliveries}
-              key={delivery.id}
-              data={delivery}
-            />
-          ))}
+          {deliveries.length > 0 ? (
+            deliveries.map(delivery => (
+              <DeliveryItem
+                updateDeliveries={loadDeliveries}
+                key={delivery.id}
+                data={delivery}
+              />
+            ))
+          ) : (
+            <EmptyField>
+              <MdBlock size={86} color={colors.primary} />
+              <span>Não há encomendas</span>
+            </EmptyField>
+          )}
         </Grid>
-        <section>
+        <ButtonSection>
           <Button
             disabled={page === 1}
             onClick={() => setPage(page - 1)}
             type="button"
           >
-            <MdChevronLeft size={26} />
+            <MdChevronLeft size={26} />{' '}
+            <span style={{ marginRight: 5 }}>Voltar</span>
           </Button>
           <Button
             disabled={deliveries.length < 5}
             type="button"
             onClick={() => setPage(page + 1)}
           >
+            <span style={{ marginLeft: 5 }}>Próximo</span>
             <MdChevronRight size={26} />
           </Button>
-        </section>
+        </ButtonSection>
       </Content>
     </Container>
   );
