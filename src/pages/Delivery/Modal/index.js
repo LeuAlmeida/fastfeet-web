@@ -58,7 +58,7 @@ DeliveryModal.propTypes = {
       number: PropTypes.number,
       city: PropTypes.string,
       state: PropTypes.string,
-      cep: PropTypes.string,
+      cep: PropTypes.number,
     }),
     status: PropTypes.string,
     signature: PropTypes.shape({
