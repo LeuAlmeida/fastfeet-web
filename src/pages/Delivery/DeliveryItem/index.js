@@ -43,7 +43,14 @@ export default function DeliveryItem({ data, updateDeliveries }) {
           background={statusColors[data.status].background}
           textColor={statusColors[data.status].color}
         >
-          <span>{getInitials(data.deliveryman.name)}</span>
+          {data.deliveryman.avatar ? (
+            <img
+              src={data.deliveryman.avatar.url}
+              alt={data.deliveryman.name}
+            />
+          ) : (
+            <span>{getInitials(data.deliveryman.name)}</span>
+          )}
         </DeliverymanAvatar>
         {data.deliveryman.name}
       </List>
