@@ -56,6 +56,13 @@ export const DeliverymanAvatar = styled.div`
   align-items: center;
   justify-content: center;
 
+  img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: center;
+  }
+
   span {
     font-size: 12px;
     color: ${props => props.textColor};
