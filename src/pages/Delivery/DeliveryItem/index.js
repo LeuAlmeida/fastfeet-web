@@ -42,6 +42,7 @@ export default function DeliveryItem({ data, updateDeliveries }) {
         <DeliverymanAvatar
           background={statusColors[data.status].background}
           textColor={statusColors[data.status].color}
+          hasAvatar={!!data.deliveryman.avatar}
         >
           {data.deliveryman.avatar ? (
             <img
@@ -93,6 +94,9 @@ DeliveryItem.propTypes = {
     id: PropTypes.number,
     deliveryman: PropTypes.shape({
       name: PropTypes.string,
+      avatar: PropTypes.shape({
+        url: PropTypes.string,
+      }),
     }),
     product: PropTypes.string,
     recipient: PropTypes.shape({
