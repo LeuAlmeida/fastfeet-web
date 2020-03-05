@@ -41,7 +41,7 @@ export default function Delivery() {
     setPage(1);
     const response = await api.get('/delivery', {
       params: {
-        q: e.target.value,
+        productFound: e.target.value,
         page,
       },
     });
