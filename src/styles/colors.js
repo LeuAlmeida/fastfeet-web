@@ -21,4 +21,8 @@ export const statusColors = {
     color: '#DE3B3B',
     background: '#FAB0B0',
   },
+  DISABLED: {
+    color: '#a5a5a5',
+    background: '#dedede',
+  },
 };
