@@ -9,7 +9,7 @@ export const Container = styled.div`
   padding-right: 13px;
 
   display: grid;
-  grid-template-columns: 0.5fr 1.5fr 1fr 1.5fr 1.5fr 1fr 1fr;
+  grid-template-columns: 0.5fr 1.2fr 2fr 1.5fr 1fr 0.5fr 1fr;
 
   > small:last-child {
     text-align: right;
@@ -26,6 +26,10 @@ export const List = styled.small`
   font-size: 16px;
   color: #666;
   text-align: left;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 
   margin: auto 0;
 
@@ -36,6 +40,25 @@ export const List = styled.small`
 
   &:last-child {
     text-align: right;
+  }
+`;
+
+export const DeliverymanAvatar = styled.div`
+  display: flex;
+  justify-self: flex-start;
+  text-transform: uppercase;
+  margin-right: 8px;
+  background: ${props => props.background};
+  padding: 3px;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+
+  span {
+    font-size: 12px;
+    color: ${props => props.textColor};
   }
 `;
 
