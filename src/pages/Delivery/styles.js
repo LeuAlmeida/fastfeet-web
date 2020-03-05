@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { statusColors, colors } from '~/styles/colors';
 
@@ -23,14 +23,21 @@ export const Content = styled.div`
 `;
 
 export const Grid = styled.div`
-  height: 400px;
   > section {
-    display: grid;
+    ${props =>
+      props.null
+        ? css`
+            display: flex;
+            justify-content: space-around;
+            grid-template-columns: 1fr;
+          `
+        : css`
+            display: grid;
+            grid-template-columns: 0.5fr 1.2fr 2fr 1.5fr 1fr 0.5fr 1fr;
+          `}
 
     padding-left: 25px;
     padding-right: 13px;
-
-    grid-template-columns: 0.5fr 1.2fr 2fr 1.5fr 1fr 0.5fr 1fr;
 
     strong:last-child {
       text-align: right;
@@ -56,9 +63,41 @@ export const Button = styled(SimpleButton)`
   border: 0;
   color: #fff;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    font-size: 14px;
+  }
+
   &:disabled {
     cursor: not-allowed;
-    background: ${statusColors.CANCELED.background};
-    color: ${statusColors.CANCELED.color};
+    background: ${statusColors.DISABLED.background};
+    color: ${statusColors.DISABLED.color};
+  }
+`;
+
+export const ButtonSection = styled.section`
+  margin: 30px 0;
+`;
+
+export const EmptyField = styled.section`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  svg {
+    margin-top: 40px;
+  }
+
+  span {
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 10px;
+    color: ${colors.primary};
   }
 `;
