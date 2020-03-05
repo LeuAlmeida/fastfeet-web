@@ -48,10 +48,10 @@ export const DeliverymanAvatar = styled.div`
   justify-self: flex-start;
   text-transform: uppercase;
   margin-right: 8px;
-  background: ${props => props.background};
+  background: ${props => (props.hasAvatar ? 'transparent' : props.background)};
   padding: 3px;
-  height: 30px;
-  width: 30px;
+  height: ${props => (props.hasAvatar ? '' : '30px')};
+  width: ${props => (props.hasAvatar ? '' : '30px')};
   border-radius: 50%;
   align-items: center;
   justify-content: center;
@@ -64,8 +64,13 @@ export const DeliverymanAvatar = styled.div`
   }
 
   span {
+    display: flex;
+    width: 30px;
+    height: 30px;
     font-size: 12px;
     color: ${props => props.textColor};
+    justify-content: center;
+    align-items: center;
   }
 `;
 
