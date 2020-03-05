@@ -21,7 +21,11 @@ export default function DeliveryForm({ match }) {
   useEffect(() => {
     async function loadInitialData(deliveryId) {
       if (id) {
-        const response = await api.get(`/delivery/${deliveryId}`);
+        const response = await api.get('/delivery', {
+          params: {
+            deliveryId,
+          },
+        });
 
         formRef.current.setData(response.data);
         formRef.current.setFieldValue('recipient_id', {
