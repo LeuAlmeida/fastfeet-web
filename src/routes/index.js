@@ -5,6 +5,7 @@ import Route from './Route';
 import SignIn from '~/pages/SignIn';
 
 import Delivery from '~/pages/Delivery';
+import DeliveryForm from '~/pages/Delivery/Form';
 
 import Deliveryman from '~/pages/Deliveryman';
 import CreateDeliveryman from '~/pages/Deliveryman/Create';
@@ -22,6 +23,8 @@ export default function Routes() {
       <Route path="/" exact component={SignIn} />
 
       <Route path="/delivery" component={Delivery} isPrivate />
+      <Route path="/delivery/create" component={DeliveryForm} isPrivate />
+      <Route path="/DeliveryForm/update/:id" component={Delivery} isPrivate />
 
       <Route path="/deliveryman" component={Deliveryman} isPrivate />
       <Route
