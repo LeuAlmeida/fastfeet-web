@@ -11,9 +11,10 @@ import { statusColors, colors } from '~/styles/colors';
 
 import DeliveryModal from '../Modal';
 import Status from './DeliveryStatus';
-import { Container, List, MoreConainer } from './styles';
+import { Container, List, MoreConainer, DeliverymanAvatar } from './styles';
 
 import translateStatus from '~/utils/translateStatus';
+import getInitials from '~/utils/getInitials';
 
 export default function DeliveryItem({ data, updateDeliveries }) {
   async function handleDelete() {
@@ -37,7 +38,15 @@ export default function DeliveryItem({ data, updateDeliveries }) {
     <Container>
       <List>#{data.id}</List>
       <List>{data.recipient.name}</List>
-      <List>{data.product}</List>
+      <List>
+        <DeliverymanAvatar
+          background={statusColors[data.status].background}
+          textColor={statusColors[data.status].color}
+        >
+          <span>{getInitials(data.deliveryman.name)}</span>
+        </DeliverymanAvatar>
+        {data.deliveryman.name}
+      </List>
       <List>{data.recipient.city}</List>
       <List>{data.recipient.state}</List>
       <Status
@@ -75,6 +84,9 @@ DeliveryItem.propTypes = {
   updateDeliveries: PropTypes.func.isRequired,
   data: PropTypes.shape({
     id: PropTypes.number,
+    deliveryman: PropTypes.shape({
+      name: PropTypes.string,
+    }),
     product: PropTypes.string,
     recipient: PropTypes.shape({
       name: PropTypes.string,
