@@ -1,8 +1,17 @@
-import styled, { css } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 
 import { statusColors, colors } from '~/styles/colors';
 
 import { SimpleButton } from '~/components/utils/Button';
+
+const rotate = keyframes`
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+`;
 
 export const Container = styled.div`
   display: flex;
@@ -92,6 +101,27 @@ export const EmptyField = styled.section`
 
   svg {
     margin-top: 40px;
+  }
+
+  span {
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 10px;
+    color: ${colors.primary};
+  }
+`;
+
+export const LoadingField = styled.section`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  svg {
+    margin-top: 40px;
+    animation: ${rotate} 2s linear infinite;
   }
 
   span {
