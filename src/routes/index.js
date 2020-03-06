@@ -8,8 +8,6 @@ import Delivery from '~/pages/Delivery';
 import DeliveryForm from '~/pages/Delivery/Form';
 
 import Deliveryman from '~/pages/Deliveryman';
-import CreateDeliveryman from '~/pages/Deliveryman/Create';
-import UpdateDeliveryman from '~/pages/Deliveryman/Update';
 
 import Recipients from '~/pages/Recipients';
 import CreateRecipients from '~/pages/Recipients/Create';
@@ -27,16 +25,6 @@ export default function Routes() {
       <Route path="/delivery/update/:id" component={DeliveryForm} isPrivate />
 
       <Route path="/deliveryman" component={Deliveryman} isPrivate />
-      <Route
-        path="/deliveryman/create"
-        component={CreateDeliveryman}
-        isPrivate
-      />
-      <Route
-        path="/deliveryman/update"
-        component={UpdateDeliveryman}
-        isPrivate
-      />
 
       <Route path="/recipients" component={Recipients} isPrivate />
       <Route path="/recipients/create" component={CreateRecipients} isPrivate />
