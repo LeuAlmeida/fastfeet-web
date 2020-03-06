@@ -5,6 +5,7 @@ import {
   MdChevronRight,
   MdBlock,
   MdCached,
+  MdError,
 } from 'react-icons/md';
 import { parseISO, format } from 'date-fns';
 
@@ -32,6 +33,7 @@ export default function Delivery() {
   const [deliveries, setDeliveries] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   function formatDate(data) {
     return data.map(delivery => ({
@@ -48,31 +50,41 @@ export default function Delivery() {
   async function handleSearchDelivery(e) {
     setLoading(true);
     setPage(1);
-    const response = await api.get('/delivery', {
-      params: {
-        productFound: e.target.value,
-        page,
-      },
-    });
+    try {
+      const response = await api.get('/delivery', {
+        params: {
+          productFound: e.target.value,
+          page,
+        },
+      });
 
-    const data = formatDate(response.data);
+      const data = formatDate(response.data);
 
-    setDeliveries(data);
-    setLoading(false);
+      setDeliveries(data);
+      setLoading(false);
+    } catch (err) {
+      setError(err);
+      setLoading(false);
+    }
   }
 
   async function loadDeliveries() {
     setLoading(true);
-    const response = await api.get('/delivery', {
-      params: {
-        page,
-      },
-    });
+    try {
+      const response = await api.get('/delivery', {
+        params: {
+          page,
+        },
+      });
 
-    const data = formatDate(response.data);
+      const data = formatDate(response.data);
 
-    setDeliveries(data);
-    setLoading(false);
+      setDeliveries(data);
+      setLoading(false);
+    } catch (err) {
+      setError(err);
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
@@ -111,6 +123,63 @@ export default function Delivery() {
               <MdCached size={86} color={colors.primary} />
               <span>Carregando...</span>
             </LoadingField>
+          </Grid>
+          <ButtonSection>
+            <Button
+              disabled={page === 1}
+              onClick={() => setPage(page - 1)}
+              type="button"
+            >
+              <MdChevronLeft size={26} />{' '}
+              <span style={{ marginRight: 5 }}>Voltar</span>
+            </Button>
+            <Button
+              disabled={deliveries.length < 5}
+              type="button"
+              onClick={() => setPage(page + 1)}
+            >
+              <span style={{ marginLeft: 5 }}>Próximo</span>
+              <MdChevronRight size={26} />
+            </Button>
+          </ButtonSection>
+        </Content>
+      </Container>
+    );
+  }
+  if (error) {
+    return (
+      <Container>
+        <Content>
+          <HeaderList title="Gerenciando encomendas">
+            <SearchInput
+              onChange={handleSearchDelivery}
+              type="text"
+              placeholder="Buscar por encomendas"
+            />
+            <IconButton
+              Icon={MdAdd}
+              title="CADASTRAR"
+              action={() => history.push('/delivery/create')}
+              type="button"
+            />
+          </HeaderList>
+
+          <Grid null={!deliveries.length > 0}>
+            <section>
+              <strong>ID</strong>
+              <strong>Destinatário</strong>
+              <strong>Entregador</strong>
+              <strong>Cidade</strong>
+              <strong>Estado</strong>
+              <strong>Status</strong>
+              <strong>Ações</strong>
+            </section>
+            <EmptyField>
+              <MdError size={86} color={colors.primary} />
+              <span>
+                Erro ao carregar, por favor tente novamente mais tarde.
+              </span>
+            </EmptyField>
           </Grid>
           <ButtonSection>
             <Button
