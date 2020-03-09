@@ -41,7 +41,7 @@ export const Grid = styled.div`
           `
         : css`
             display: grid;
-            grid-template-columns: 0.5fr 1.2fr 2fr 1.5fr 1fr 0.5fr 1fr;
+            grid-template-columns: 1.2fr 1.1fr 2fr 2fr 1fr;
           `}
 
     padding-left: 25px;
