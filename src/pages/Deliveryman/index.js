@@ -24,6 +24,7 @@ import {
   ButtonSection,
   Button,
   LoadingField,
+  EmptyField,
 } from './styles';
 
 export default function Deliverymen() {
@@ -35,7 +36,7 @@ export default function Deliverymen() {
   async function loadDeliverymen() {
     setLoading(true);
     try {
-      const response = await api.get('/deliverymaan', {
+      const response = await api.get('/deliveryman', {
         params: {
           page,
         },
@@ -103,6 +104,62 @@ export default function Deliverymen() {
               <MdCached size={86} color={colors.primary} />
               <span>Carregando...</span>
             </LoadingField>
+          </Grid>
+          <ButtonSection>
+            <Button
+              disabled={page === 1}
+              onClick={() => setPage(page - 1)}
+              type="button"
+            >
+              <MdChevronLeft size={26} />{' '}
+              <span style={{ marginRight: 5 }}>Voltar</span>
+            </Button>
+            <Button
+              disabled={deliverymen.length < 5}
+              type="button"
+              onClick={() => setPage(page + 1)}
+            >
+              <span style={{ marginLeft: 5 }}>Próximo</span>
+              <MdChevronRight size={26} />
+            </Button>
+          </ButtonSection>
+        </Content>
+      </Container>
+    );
+  }
+
+  if (error) {
+    return (
+      <Container>
+        <Content>
+          <HeaderList title="Gerenciando entregadores">
+            <SearchInput
+              onChange={handleSearchDeliveryman}
+              type="text"
+              placeholder="Buscar por entregadores"
+            />
+            <IconButton
+              Icon={MdAdd}
+              title="CADASTRAR"
+              action={() => history.push('/deliveryman/create')}
+              type="button"
+            />
+          </HeaderList>
+
+          <Grid null={!deliverymen.length > 0}>
+            <section>
+              <strong>ID</strong>
+              <strong>Foto</strong>
+              <strong>Nome</strong>
+              <strong>Email</strong>
+              <strong>Ações</strong>
+            </section>
+            <EmptyField>
+              <MdError size={86} color={colors.primary} />
+              <span>
+                Erro ao carregar, por favor tente novamente mais tarde.
+              </span>
+            </EmptyField>
           </Grid>
           <ButtonSection>
             <Button
