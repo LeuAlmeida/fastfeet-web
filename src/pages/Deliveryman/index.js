@@ -7,11 +7,11 @@ import HeaderList from '~/components/HeaderList';
 import api from '~/services/api';
 import history from '~/services/history';
 
-// import DeliverymanItem from './DeliverymanItem';
+import DeliverymanItem from './DeliverymanItem';
 import { Container, Content, Grid, Button } from './styles';
 
 export default function Deliverymen() {
-  const [deliverymans, setDeliverymen] = useState([]);
+  const [deliverymen, setDeliverymen] = useState([]);
   const [page, setPage] = useState(1);
 
   async function loadDeliverymen() {
@@ -66,6 +66,13 @@ export default function Deliverymen() {
             <strong>Email</strong>
             <strong>Ações</strong>
           </section>
+          {deliverymen.map(deliveryman => (
+            <DeliverymanItem
+              key={deliveryman.id}
+              data={deliveryman}
+              updateDeliveryman={loadDeliverymen}
+            />
+          ))}
         </Grid>
         <section>
           <Button
@@ -76,7 +83,7 @@ export default function Deliverymen() {
             voltar
           </Button>
           <Button
-            disabled={deliverymans.length < 5}
+            disabled={deliverymen.length < 5}
             type="button"
             onClick={() => setPage(page + 1)}
           >
