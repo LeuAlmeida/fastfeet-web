@@ -201,7 +201,7 @@ export default function Deliverymen() {
           />
         </HeaderList>
 
-        <Grid>
+        <Grid null={!deliverymen.length > 0}>
           <section>
             <strong>ID</strong>
             <strong>Foto</strong>
@@ -209,13 +209,20 @@ export default function Deliverymen() {
             <strong>Email</strong>
             <strong>Ações</strong>
           </section>
-          {deliverymen.map(deliveryman => (
-            <DeliverymanItem
-              key={deliveryman.id}
-              data={deliveryman}
-              updateDeliveryman={loadDeliverymen}
-            />
-          ))}
+          {deliverymen.length > 0 ? (
+            deliverymen.map(deliveryman => (
+              <DeliverymanItem
+                key={deliveryman.id}
+                data={deliveryman}
+                updateDeliveryman={loadDeliverymen}
+              />
+            ))
+          ) : (
+            <EmptyField>
+              <MdBlock size={86} color={colors.primary} />
+              <span>Não há entregadores</span>
+            </EmptyField>
+          )}
         </Grid>
         <ButtonSection>
           <Button
