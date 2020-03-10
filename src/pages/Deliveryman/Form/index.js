@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 
 import { BackButton, SaveButton } from '~/components/utils/Button';
 import SimpleInput from '~/components/Form/SimpleInput';
-// import { PhotoInput } from '~/components/Form';
+import PhotoInput from '~/components/Form/PhotoInput';
 
 import HeaderForm from '~/components/Form/HeaderForm';
 
@@ -21,7 +21,9 @@ export default function DeliverymanForm({ match }) {
   useEffect(() => {
     async function loadInitialData(deliverymanId) {
       if (id) {
-        const response = await api.get(`/deliverymen/${deliverymanId}`);
+        const response = await api.get(
+          `/deliveryman?deliverymanId=${deliverymanId}`
+        );
 
         formRef.current.setData(response.data);
         formRef.current.setFieldValue('avatar', response?.data?.avatar?.url);
@@ -89,7 +91,7 @@ export default function DeliverymanForm({ match }) {
         </HeaderForm>
 
         <UnForm ref={formRef} onSubmit={handleSubmit}>
-          {/* <PhotoInput name="avatar" /> */}
+          <PhotoInput name="avatar" />
           <SimpleInput
             label="Nome"
             name="name"
