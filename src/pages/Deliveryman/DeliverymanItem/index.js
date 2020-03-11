@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React from 'react';
 import { MdEdit, MdDeleteForever } from 'react-icons/md';
 import { toast } from 'react-toastify';
@@ -14,7 +15,9 @@ import { Container, MoreConainer } from './styles';
 
 export default function DeliverymanItem({ data, updateDeliveryman }) {
   async function handleDelete() {
-    const confirm = window.confirm('Você tem certeza que deseja deletar isso?');
+    const confirm = window.confirm(
+      'Você tem certeza que deseja remover este entregador?'
+    );
 
     if (!confirm) {
       toast.warning('O entregador não foi removido.');
@@ -26,7 +29,7 @@ export default function DeliverymanItem({ data, updateDeliveryman }) {
       updateDeliveryman();
       toast.success('Entregador apagado com sucesso!');
     } catch (err) {
-      toast.error('Esse entregador ainda possui encomendas para entregar!');
+      toast.error('Este entregador ainda possui encomendas a serem entregues.');
     }
   }
 
