@@ -11,8 +11,6 @@ import Deliveryman from '~/pages/Deliveryman';
 import DeliverymanForm from '~/pages/Deliveryman/Form';
 
 import Recipients from '~/pages/Recipients';
-import CreateRecipients from '~/pages/Recipients/Create';
-import UpdateRecipients from '~/pages/Recipients/Update';
 
 import Problems from '~/pages/Problems';
 
@@ -39,8 +37,6 @@ export default function Routes() {
       />
 
       <Route path="/recipients" component={Recipients} isPrivate />
-      <Route path="/recipients/create" component={CreateRecipients} isPrivate />
-      <Route path="/recipients/update" component={UpdateRecipients} isPrivate />
 
       <Route path="/problems" component={Problems} isPrivate />
     </Switch>
