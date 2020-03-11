@@ -33,7 +33,7 @@ export default function Recipients() {
 
   useEffect(() => {
     loadRecipients();
-	}, [page]); // eslint-disable-line
+  }, [page]);
 
   async function handleSearchRecipient(e) {
     setPage(1);
@@ -60,7 +60,7 @@ export default function Recipients() {
           <IconButton
             Icon={MdAdd}
             title="CADASTRAR"
-            action={() => history.push('/recipients/form')}
+            action={() => history.push('/recipients/create')}
             type="button"
           />
         </HeaderList>
