@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React from 'react';
 import { MdEdit, MdDeleteForever } from 'react-icons/md';
 import { toast } from 'react-toastify';
@@ -18,7 +19,9 @@ import getInitials from '~/utils/getInitials';
 
 export default function DeliveryItem({ data, updateDeliveries }) {
   async function handleDelete() {
-    const confirm = window.confirm('Você realmente deseja excluir?');
+    const confirm = window.confirm(
+      'Você realmente deseja excluir esta encomenda?'
+    );
 
     if (!confirm) {
       toast.error(`A encomenda ${data.product} não foi deletada.`);
@@ -28,7 +31,7 @@ export default function DeliveryItem({ data, updateDeliveries }) {
     try {
       await api.delete(`/delivery/${data.id}`);
       updateDeliveries();
-      toast.success('Encomenda deletada com sucesso.');
+      toast.success('Encomenda removida com sucesso.');
     } catch (err) {
       toast.error('Essa encomenda não pôde ser deletada.');
     }
