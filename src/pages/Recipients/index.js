@@ -9,8 +9,11 @@ import {
 } from 'react-icons/md';
 
 import api from '~/services/api';
+import history from '~/services/history';
 
+import IconButton from '~/components/utils/Button/IconButton';
 import HeaderList from '~/components/HeaderList';
+import SearchInput from '~/components/Form/SearchInput';
 
 import { Container, Content, Grid, ButtonSection, Button } from './styles';
 
@@ -48,7 +51,19 @@ export default function Recipients() {
   return (
     <Container>
       <Content>
-        <HeaderList title="Gerenciando destinatários" />
+        <HeaderList title="Gerenciando destinatários">
+          <SearchInput
+            onChange={handleSearchRecipient}
+            type="text"
+            placeholder="Buscar por destinatários"
+          />
+          <IconButton
+            Icon={MdAdd}
+            title="CADASTRAR"
+            action={() => history.push('/recipients/form')}
+            type="button"
+          />
+        </HeaderList>
         <Grid>
           <section>
             <strong>ID</strong>
