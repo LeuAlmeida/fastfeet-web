@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { colors, statusColors } from '~/styles/colors';
+
 import { SimpleButton } from '~/components/utils/Button';
 
 export const Container = styled.div`
@@ -47,12 +49,28 @@ export const Grid = styled.div`
   }
 `;
 
+export const ButtonSection = styled.section`
+  margin: 30px 0;
+`;
+
 export const Button = styled(SimpleButton)`
   width: 100px;
   height: 36px;
+  background: ${colors.primary};
+  border: 0;
+  color: #fff;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    font-size: 14px;
+  }
 
   &:disabled {
     cursor: not-allowed;
-    background: #666;
+    background: ${statusColors.DISABLED.background};
+    color: ${statusColors.DISABLED.color};
   }
 `;
