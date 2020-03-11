@@ -15,6 +15,8 @@ import IconButton from '~/components/utils/Button/IconButton';
 import HeaderList from '~/components/HeaderList';
 import SearchInput from '~/components/Form/SearchInput';
 
+import RecipientItem from './RecipientItem';
+
 import { Container, Content, Grid, ButtonSection, Button } from './styles';
 
 export default function Recipients() {
@@ -71,6 +73,13 @@ export default function Recipients() {
             <strong>Endereço</strong>
             <strong>Ações</strong>
           </section>
+          {recipients.map(recipient => (
+            <RecipientItem
+              updateRecipients={loadRecipients}
+              key={recipient.id}
+              data={recipient}
+            />
+          ))}
         </Grid>
         <ButtonSection>
           <Button
