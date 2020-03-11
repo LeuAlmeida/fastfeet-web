@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React from 'react';
 import { MdEdit, MdDeleteForever } from 'react-icons/md';
 import { toast } from 'react-toastify';
@@ -13,10 +14,12 @@ import { Container, MoreConainer } from './styles';
 
 export default function RecipientItem({ data, updateRecipients }) {
   async function handleDelete() {
-    const confirm = window.confirm('Você tem certeza que deseja deletar isso?');
+    const confirm = window.confirm(
+      'Você tem certeza que deseja deletar este destinatário?'
+    );
 
     if (!confirm) {
-      toast.error('Destinatário não apagado!');
+      toast.error('Destinatário não removido.');
       return;
     }
 
@@ -26,7 +29,7 @@ export default function RecipientItem({ data, updateRecipients }) {
       toast.success('Destinatário apagado com sucesso!');
     } catch (err) {
       toast.error(
-        'Esse destinatário não pode ser apagado, pois ainda tem encomenda para receber!'
+        'Esse destinatário não pode ser apagado, pois ainda tem ao menos uma encomenda a ser entregue.'
       );
     }
   }
@@ -42,7 +45,7 @@ export default function RecipientItem({ data, updateRecipients }) {
         <MoreConainer>
           <div>
             <button
-              onClick={() => history.push(`/recipients/form/${data.id}`)}
+              onClick={() => history.push(`/recipients/edit/${data.id}`)}
               type="button"
             >
               <MdEdit color={colors.info} size={15} />
