@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 
 import { SaveButton, BackButton } from '~/components/utils/Button';
 import SimpleInput from '~/components/Form/SimpleInput';
-// import MaskInput from '~/components/Form/MaskInput';
+import MaskInput from '~/components/Form/MaskInput';
 import HeaderForm from '~/components/Form/HeaderForm';
 import api from '~/services/api';
 import history from '~/services/history';
@@ -128,7 +128,7 @@ export default function RecipientsForm({ match }) {
               type="text"
               placeholder="Estado do destinatário"
             />
-            {/* <MaskInput
+            <MaskInput
               label="CEP"
               name="zip_code"
               mask="99999-999"
@@ -137,7 +137,7 @@ export default function RecipientsForm({ match }) {
               onKeyPress={e =>
                 e.key === 'Enter' ? formRef.current.submitForm() : null
               }
-            /> */}
+            />
           </div>
         </UnForm>
       </Content>
