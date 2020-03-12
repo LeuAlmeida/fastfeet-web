@@ -45,7 +45,7 @@ export default function RecipientItem({ data, updateRecipients }) {
         <MoreConainer>
           <div>
             <button
-              onClick={() => history.push(`/recipients/edit/${data.id}`)}
+              onClick={() => history.push(`/recipients/update/${data.id}`)}
               type="button"
             >
               <MdEdit color={colors.info} size={15} />
