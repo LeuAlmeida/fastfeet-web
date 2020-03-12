@@ -44,8 +44,6 @@ export default function RecipientsForm({ match }) {
             .match(/.{1,5}/g)
             .join('-'),
         });
-
-        // formRef.current.setData(response.data.recipient);
       }
     }
     loadInitialData();
