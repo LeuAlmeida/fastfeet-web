@@ -20,9 +20,32 @@ export default function RecipientsForm({ match }) {
   useEffect(() => {
     async function loadInitialData() {
       if (id) {
-        const response = await api.get(`/recipients/${id}`);
+        const response = await api.get(`/recipients?recipientId=${id}`);
 
-        formRef.current.setData(response.data);
+        const {
+          name,
+          address,
+          number,
+          complement,
+          city,
+          state,
+          cep,
+        } = response.data.recipient;
+
+        formRef.current.setData({
+          name,
+          address,
+          number,
+          complement,
+          city,
+          state,
+          cep: cep
+            .toString()
+            .match(/.{1,5}/g)
+            .join('-'),
+        });
+
+        // formRef.current.setData(response.data.recipient);
       }
     }
     loadInitialData();
@@ -34,41 +57,51 @@ export default function RecipientsForm({ match }) {
     try {
       const schema = Yup.object().shape({
         name: Yup.string().required('O nome é obrigatório'),
-        street: Yup.string().required('A rua é obrigatória'),
+        address: Yup.string().required('A rua é obrigatória'),
         number: Yup.string().required('O número é obrigatório'),
         complement: Yup.string().notRequired(),
         city: Yup.string().required('A cidade é obrigatória'),
         state: Yup.string().required('O estado é obrigatório'),
-        zip_code: Yup.string().required('O CEP é obrigatório'),
+        cep: Yup.string().required('O CEP é obrigatório'),
       });
 
       await schema.validate(data, {
         abortEarly: false,
       });
 
+      const cep = data.cep.replace(/-/g, '');
+
       if (id) {
-        await api.put(`/recipients/${id}`, {
-          name: data.name,
-          street: data.street,
-          number: data.number,
-          complement: data?.complement,
-          city: data.city,
-          state: data.state,
-          zip_code: data.zip_code,
-        });
-        toast.success('Destinatário editado com sucesso!');
-        history.push('/recipients');
+        try {
+          await api.put(`/recipients/${id}`, {
+            name: data.name,
+            address: data.address,
+            number: data.number,
+            complement: data?.complement,
+            city: data.city,
+            state: data.state,
+            cep,
+          });
+          toast.success('Destinatário editado com sucesso!');
+          history.push('/recipients');
+        } catch (err) {
+          toast.error('Houve um erro ao editar este destinatário.');
+        }
       } else {
-        await api.post('/recipients', {
-          name: data.name,
-          street: data.street,
-          number: data.number,
-          complement: data?.complement,
-          city: data.city,
-          state: data.state,
-          zip_code: data.zip_code,
-        });
-        toast.success('Destinatário criado com sucesso!');
+        try {
+          await api.post('/recipients', {
+            name: data.name,
+            address: data.address,
+            number: data.number,
+            complement: data?.complement,
+            city: data.city,
+            state: data.state,
+            cep,
+          });
+          toast.success('Destinatário cadastrado com sucesso!');
+        } catch (err) {
+          toast.error('Houve um erro ao cadastrar este destinatário.');
+        }
       }
 
       reset();
@@ -98,12 +131,12 @@ export default function RecipientsForm({ match }) {
             label="Nome"
             name="name"
             type="text"
-            placeholder="Nome do destinatário"
+            placeholder="Nome completo do destinatário"
           />
           <div>
             <SimpleInput
               label="Rua"
-              name="street"
+              name="address"
               type="text"
               placeholder="Rua do destinatário"
             />
@@ -113,7 +146,12 @@ export default function RecipientsForm({ match }) {
               type="number"
               placeholder="Número da casa"
             />
-            <SimpleInput label="Complemento" name="complement" type="text" />
+            <SimpleInput
+              label="Complemento"
+              name="complement"
+              placeholder="Complemento residencial"
+              type="text"
+            />
           </div>
           <div>
             <SimpleInput
@@ -130,10 +168,11 @@ export default function RecipientsForm({ match }) {
             />
             <MaskInput
               label="CEP"
-              name="zip_code"
-              mask="99999-999"
+              name="cep"
+              type="text"
               maskPlaceholder={null}
               placeholder="_____-___"
+              mask="99999-999"
               onKeyPress={e =>
                 e.key === 'Enter' ? formRef.current.submitForm() : null
               }
