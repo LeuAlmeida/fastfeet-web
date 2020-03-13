@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { SimpleButton } from '~/components/utils/Button';
 
@@ -21,14 +21,21 @@ export const Content = styled.div`
 `;
 
 export const Grid = styled.div`
-  height: 400px;
   > section {
-    display: grid;
-
     padding-left: 25px;
     padding-right: 13px;
 
-    grid-template-columns: 1fr 2fr 0.5fr;
+    ${props =>
+      props.null
+        ? css`
+            display: flex;
+            justify-content: space-around;
+            grid-template-columns: 1fr;
+          `
+        : css`
+            display: grid;
+            grid-template-columns: 1fr 2fr 0.5fr;
+          `}
 
     strong:last-child {
       text-align: right;
