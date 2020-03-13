@@ -25,7 +25,7 @@ export default function ProblemItem({ data, updateProblems }) {
     }
 
     try {
-      await api.delete(`/problem/${data._id}/cancel-delivery`);
+      await api.post(`/problems/${data.id}/cancel-delivery`);
       updateProblems();
       toast.success('Encomenda cancelada com sucesso!');
     } catch (err) {
@@ -35,7 +35,7 @@ export default function ProblemItem({ data, updateProblems }) {
 
   return (
     <Container>
-      <small>#{data._id}</small>
+      <small>#{data.id}</small>
       <small>{data.description}</small>
       <More
         contentStyle={{
@@ -66,7 +66,7 @@ export default function ProblemItem({ data, updateProblems }) {
 
 ProblemItem.propTypes = {
   data: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
   }).isRequired,
   updateProblems: PropTypes.func.isRequired,
