@@ -14,15 +14,13 @@ import HeaderList from '~/components/HeaderList';
 import SearchInput from '~/components/Form/SearchInput';
 
 import DeliveryItem from './DeliveryItem';
+import { Container, Content, Grid } from './styles';
 import {
-  LoadingField,
-  Container,
-  Content,
-  Grid,
   ButtonSection,
-  Button,
   EmptyField,
-} from './styles';
+  Button,
+  LoadingField,
+} from '~/styles/fields';
 
 import { colors } from '~/styles/colors';
 
