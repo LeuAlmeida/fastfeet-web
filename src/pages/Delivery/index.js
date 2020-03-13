@@ -36,10 +36,13 @@ export default function Delivery() {
   function formatDate(data) {
     return data.map(delivery => ({
       ...delivery,
-      start_dateFormated: delivery.start_date
+      canceled_dateFormatted: delivery.canceled_at
+        ? format(parseISO(delivery.canceled_at), 'dd/MM/yyyy')
+        : null,
+      start_dateFormatted: delivery.start_date
         ? format(parseISO(delivery.start_date), 'dd/MM/yyyy')
         : null,
-      end_dateFormated: delivery.end_date
+      end_dateFormatted: delivery.end_date
         ? format(parseISO(delivery.end_date), 'dd/MM/yyyy')
         : null,
     }));
