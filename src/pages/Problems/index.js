@@ -52,7 +52,7 @@ export default function Problems() {
       <Container>
         <Content>
           <HeaderList title="Problemas na entrega" />
-          <Grid>
+          <Grid null={!problems.length > 0}>
             <section>
               <strong>Encomenda</strong>
               <strong>Problema</strong>
@@ -91,7 +91,7 @@ export default function Problems() {
       <Container>
         <Content>
           <HeaderList title="Problemas na entrega" />
-          <Grid>
+          <Grid null={!problems.length > 0}>
             <section>
               <strong>Encomenda</strong>
               <strong>Problema</strong>
@@ -131,7 +131,7 @@ export default function Problems() {
     <Container>
       <Content>
         <HeaderList title="Problemas na entrega" />
-        <Grid>
+        <Grid null={!problems.length > 0}>
           <section>
             <strong>Encomenda</strong>
             <strong>Problema</strong>
