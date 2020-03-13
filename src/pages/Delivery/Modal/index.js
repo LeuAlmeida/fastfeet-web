@@ -22,17 +22,23 @@ export default function DeliveryModal({ data }) {
           </small>
           <small>CEP {cep}</small>
         </div>
-        {data.start_dateFormated ? (
+        {data.start_dateFormatted ? (
           <div>
             <strong>Datas</strong>
             <div>
               <span>Retirada: </span>
-              <small>{data.start_dateFormated}</small>
+              <small>{data.start_dateFormatted}</small>
             </div>
-            {data.end_dateFormated ? (
+            {data.end_dateFormatted ? (
               <div>
                 <span>Entrega: </span>
-                <small>{data.end_dateFormated}</small>
+                <small>{data.end_dateFormatted}</small>
+              </div>
+            ) : null}
+            {data.canceled_dateFormatted ? (
+              <div>
+                <span>Cancelamento: </span>
+                <small>{data.canceled_dateFormatted}</small>
               </div>
             ) : null}
           </div>
@@ -50,8 +56,9 @@ export default function DeliveryModal({ data }) {
 
 DeliveryModal.propTypes = {
   data: PropTypes.shape({
-    start_dateFormated: PropTypes.string,
-    end_dateFormated: PropTypes.string,
+    start_dateFormatted: PropTypes.string,
+    end_dateFormatted: PropTypes.string,
+    canceled_dateFormatted: PropTypes.string,
     recipient: PropTypes.shape({
       name: PropTypes.string,
       address: PropTypes.string,
