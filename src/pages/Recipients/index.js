@@ -19,15 +19,13 @@ import SearchInput from '~/components/Form/SearchInput';
 
 import RecipientItem from './RecipientItem';
 
+import { Container, Content, Grid } from './styles';
 import {
-  Container,
-  Content,
-  Grid,
   ButtonSection,
-  LoadingField,
   EmptyField,
   Button,
-} from './styles';
+  LoadingField,
+} from '~/styles/fields';
 
 export default function Recipients() {
   const [page, setPage] = useState(1);
