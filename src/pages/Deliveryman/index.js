@@ -17,15 +17,13 @@ import history from '~/services/history';
 import { colors } from '~/styles/colors';
 
 import DeliverymanItem from './DeliverymanItem';
+import { Container, Content, Grid } from './styles';
 import {
-  Container,
-  Content,
-  Grid,
   ButtonSection,
+  EmptyField,
   Button,
   LoadingField,
-  EmptyField,
-} from './styles';
+} from '~/styles/fields';
 
 export default function Deliverymen() {
   const [deliverymen, setDeliverymen] = useState([]);
