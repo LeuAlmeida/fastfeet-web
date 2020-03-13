@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
   height: 57px;
@@ -8,8 +8,16 @@ export const Container = styled.div`
   padding-left: 25px;
   padding-right: 13px;
 
-  display: grid;
-  grid-template-columns: 1fr 2fr 0.5fr;
+  ${props =>
+    props.null
+      ? css`
+          display: flex;
+          grid-template-columns: 1fr;
+        `
+      : css`
+          display: grid;
+          grid-template-columns: 1fr 2fr 0.5fr;
+        `}
 
   img {
     height: 35px;
