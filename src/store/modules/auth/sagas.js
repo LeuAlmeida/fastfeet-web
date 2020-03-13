@@ -40,7 +40,7 @@ export function setToken({ payload }) {
 
 export function signOut() {
   history.push('/');
-  toast.info('Você saiu do FastFeet.');
+  toast('Você saiu do FastFeet.');
 }
 
 export default all([
