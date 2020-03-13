@@ -24,14 +24,14 @@ export default function DeliveryItem({ data, updateDeliveries }) {
     );
 
     if (!confirm) {
-      toast.error(`A encomenda ${data.product} não foi deletada.`);
+      toast.warning(`A encomenda "${data.product}" não foi removida.`);
       return;
     }
 
     try {
       await api.delete(`/delivery/${data.id}`);
       updateDeliveries();
-      toast.success('Encomenda removida com sucesso.');
+      toast.success(`Encomenda "${data.product}" removida com sucesso.`);
     } catch (err) {
       toast.error('Essa encomenda não pôde ser deletada.');
     }
