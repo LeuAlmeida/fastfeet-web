@@ -19,14 +19,14 @@ export default function RecipientItem({ data, updateRecipients }) {
     );
 
     if (!confirm) {
-      toast.error('Destinatário não removido.');
+      toast.warning('Destinatário não removido.');
       return;
     }
 
     try {
       await api.delete(`/recipients/${data.id}`);
       updateRecipients();
-      toast.success('Destinatário apagado com sucesso!');
+      toast.success('Destinatário removido com sucesso.');
     } catch (err) {
       toast.error(
         'Esse destinatário não pode ser apagado, pois ainda tem ao menos uma encomenda a ser entregue.'
