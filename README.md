@@ -29,7 +29,6 @@ This application is based on the [Fastfeet API](https://github.com/LeuAlmeida/fa
 
 - [Node.js LTS (>= 10.x)](https://nodejs.org/)
 - [Yarn (>= 1.21)](https://yarnpkg.com/) or [NPM (>= 6.9)](https://www.npmjs.com/)
-- [Docker CE (>= 19.03.5)](https://docs.docker.com/install/)
 
 ### :closed_lock_with_key: Getting started the application
 
