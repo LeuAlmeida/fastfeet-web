@@ -38,7 +38,7 @@ Make a clone from the repo and install the dependencies
 # First of all, clone the project
 $ git clone https://github.com/LeuAlmeida/fastfeet-web.git
 
-# Enter in the DevRadar folder
+# Enter in the Fastfeet Web folder
 $ cd fastfeet-web
 
 # Install all dependencies using Yarn
@@ -47,12 +47,6 @@ $ yarn
 # Run the project
 $ yarn start
 ```
-
-## Demo
-
-Live demo incoming.
-
-<!-- You can try a DevRadar online demo in [https://1dois.com.br/devradar](https://1dois.com.br/devradar) (without navigator current location) -->
 
 ## :heavy_check_mark: Stack
 
